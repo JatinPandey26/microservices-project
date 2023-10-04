@@ -6,6 +6,7 @@ import com.JatinPandey.productservice.Entity.Product;
 import com.JatinPandey.productservice.Mapper.ProductMapper;
 import com.JatinPandey.productservice.Repository.ProductRepository;
 import com.JatinPandey.productservice.ServiceInterface.ProductServiceInterface;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.integration.IntegrationProperties;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Slf4j
 public class ProductService implements ProductServiceInterface {
 
     @Autowired
@@ -25,6 +27,7 @@ public class ProductService implements ProductServiceInterface {
     public void createProduct(ProductRequest productRequest) {
         Product product = this.productMapper.toProduct(productRequest);
         this.productRepository.save(product);
+        log.info("Product created");
     }
 
     @Override
@@ -35,8 +38,8 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
-    public ProductResponse editProduct(ProductRequest productRequest) {
-        Product product = this.productMapper.toProduct(productRequest);
+    public ProductResponse editProduct(ProductResponse productResponse) {
+        Product product = this.productMapper.toProductFromProductResponse(productResponse);
         Product savedProduct = this.productRepository.save(product);
         return this.productMapper.toProductResponse(savedProduct);
     }
@@ -46,5 +49,10 @@ public class ProductService implements ProductServiceInterface {
         List<Product> products = this.productRepository.findAll();
 
         return this.productMapper.toProductResponseList(products);
+    }
+
+    @Override
+    public void deleteProduct(long id) {
+        this.productRepository.deleteById(id);
     }
 }

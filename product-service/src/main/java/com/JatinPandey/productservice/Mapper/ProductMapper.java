@@ -13,5 +13,7 @@ public interface ProductMapper {
 
     ProductResponse toProductResponse(Product product);
 
+    Product toProductFromProductResponse(ProductResponse productResponse);
+
     List<ProductResponse> toProductResponseList(List<Product> products);
 }

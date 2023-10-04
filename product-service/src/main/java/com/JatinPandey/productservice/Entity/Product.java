@@ -1,9 +1,7 @@
 package com.JatinPandey.productservice.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.annotation.Nonnull;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -13,11 +11,12 @@ import java.math.BigDecimal;
 @Data
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
+    @Column(nullable = false)
     private String name;
-    @Column
+    @Column(nullable = false)
     private String description;
-    @Column
+    @Column(nullable = false)
     private BigDecimal price;
 }

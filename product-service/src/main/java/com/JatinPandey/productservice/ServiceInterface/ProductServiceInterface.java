@@ -10,7 +10,9 @@ public interface ProductServiceInterface {
 
     ProductResponse getProductById(long id);
 
-    ProductResponse editProduct(ProductRequest productRequest);
+    ProductResponse editProduct(ProductResponse productResponse);
 
     List<ProductResponse> getAllProducts();
+
+    void deleteProduct(long id);
 }
