@@ -1,6 +1,5 @@
 package com.JatinPandey.productservice.Entity;
 
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,4 +18,5 @@ public class Product {
     private String description;
     @Column(nullable = false)
     private BigDecimal price;
+
 }

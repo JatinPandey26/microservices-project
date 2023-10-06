@@ -5,9 +5,9 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class OrderLineItemsDTO {
-    private long id;
-    private String skuCode;
-    private BigDecimal price;
+public class OrderLineItemsRequest {
+
+    private Long product_id;
     private Integer quantity;
+    private OrderResponse orderEntity;
 }

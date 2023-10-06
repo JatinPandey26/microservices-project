@@ -2,8 +2,11 @@ package com.JatinPandey.orderSevice.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table
@@ -15,9 +18,9 @@ public class OrderEntity {
     private Long id;
 
     @Column
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String OrderNumber;
+    private String OrderNumber = UUID.randomUUID().toString().toUpperCase();
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "orderEntity")
-    private List<OrderLineItem> orderLineItemList;
+    @ToString.Exclude
+    @OneToMany(mappedBy = "orderEntity")
+    private List<OrderLineItem> orderLineItemList = new ArrayList<>();
 }
