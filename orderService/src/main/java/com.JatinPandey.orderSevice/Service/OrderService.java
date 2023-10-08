@@ -36,6 +36,11 @@ public class OrderService {
         OrderEntity orderEntity = orderMapper.toOrder(orderRequest);
         log.info(orderRequest.toString());
         log.info(orderEntity.toString());
+
+        orderEntity.getOrderLineItemList().stream().map(orderItem => {
+            re
+        })
+
         orderRepository.save(orderEntity);
     }
 
