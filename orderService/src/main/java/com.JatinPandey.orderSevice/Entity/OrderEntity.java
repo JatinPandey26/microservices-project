@@ -20,7 +20,7 @@ public class OrderEntity {
     @Column
     private String OrderNumber = UUID.randomUUID().toString().toUpperCase();
 
-    @ToString.Exclude
-    @OneToMany(mappedBy = "orderEntity")
+    @OneToMany(targetEntity = OrderLineItem.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "oe_fk",referencedColumnName = "id")
     private List<OrderLineItem> orderLineItemList = new ArrayList<>();
 }

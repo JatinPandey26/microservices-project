@@ -13,6 +13,7 @@ import com.JatinPandey.orderSevice.Repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -32,15 +33,16 @@ public class OrderService {
     @Autowired
     OrderLineItemRepository orderLineItemRepository;
 
+    @Autowired
+    RestTemplate restTemplate;
+
     public void placeOrder(OrderRequest orderRequest){
         OrderEntity orderEntity = orderMapper.toOrder(orderRequest);
         log.info(orderRequest.toString());
         log.info(orderEntity.toString());
 
-        orderEntity.getOrderLineItemList().stream().map(orderItem => {
-            re
-        })
-
+        boolean isPlaceOrderSuccessInInventory = Boolean.TRUE.equals(restTemplate.postForObject("http://inventory-service/api/inventory/book", orderRequest, Boolean.class));
+        if(!isPlaceOrderSuccessInInventory) return;
         orderRepository.save(orderEntity);
     }
 

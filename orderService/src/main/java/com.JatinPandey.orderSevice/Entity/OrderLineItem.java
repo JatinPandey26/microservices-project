@@ -24,8 +24,5 @@ public class OrderLineItem {
     @Column
     private Integer quantity;
 
-    @ToString.Exclude
-    @ManyToOne
-    private OrderEntity orderEntity;
 
 }

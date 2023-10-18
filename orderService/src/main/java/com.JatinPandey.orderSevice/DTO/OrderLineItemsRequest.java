@@ -9,5 +9,4 @@ public class OrderLineItemsRequest {
 
     private Long product_id;
     private Integer quantity;
-    private OrderResponse orderEntity;
 }

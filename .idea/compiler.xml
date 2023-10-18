@@ -8,13 +8,20 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="product-service" />
-        <module name="orderService" />
+        <module name="DiscoveryServer" />
         <module name="inventory-service" />
+        <module name="ApiGateway" />
+        <module name="orderService" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="discovery-server" target="20" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ApiGateway" options="-parameters" />
+      <module name="DiscoveryServer" options="-parameters" />
       <module name="inventory-service" options="-parameters" />
       <module name="orderService" options="-parameters" />
       <module name="product-service" options="-parameters" />
